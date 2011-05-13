@@ -72,14 +72,12 @@ klass = ClassDefinition(current)
       init_meth = MethodDefinition(init_body)
     end
     
-    adding_block = quote do
+    Body(init_meth.body) << quote do
       add_callback_for_route `param` do
         result=`block.body`
         return result
       end
     end
-    
-    Body(init_meth.body) << adding_block
     
     quote { nil }
   end
@@ -160,8 +158,9 @@ class SinatraCloneTest
     end
   end
 
-  $Test
+
 #test "doGet prints hello world" do
+$Test
 def test_foo:void
     app = SomeApp.new
     req = FakeServletRequest.new

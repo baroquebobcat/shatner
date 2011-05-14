@@ -3,17 +3,26 @@ require 'rubygems'
 require 'bundler/setup'
 require 'mirah_task'
 
-desc "run tests"
-task :compile_test do #=> :jar do
+desc "compiles library"
+task :compile do
   puts "Compiling Mirah tests"
-  mirahc 'test_sinatra_clone.mirah',:options => [
+  mkdir_p 'build'
+  mirahc 'shatner_base.mirah',:options => [ '--cd', 'src', '-d', '../build',
     '--classpath', Dir['javalib/*.jar'].join(':')]
+
 end
 
 
+task :compile_test => :compile do #=> :jar do
+  puts "Compiling Mirah tests"
+  mirahc 'test_sinatra_clone.mirah',:options => [
+    '--classpath', Dir['javalib/*.jar'].join(':') + ":build/"]
+end
+
+desc "run tests"
 task :test => :compile_test do
   ant.junit :haltonfailure => 'true', :fork => 'true' do
-    classpath :path => Dir['javalib/*.jar'].join(':')+':.'
+    classpath :path => Dir['javalib/*.jar'].join(':')+':build/:.'
     batchtest do
       fileset :dir => "." do
         include :name => '**/*Test.class'

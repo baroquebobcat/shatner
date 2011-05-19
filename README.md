@@ -8,8 +8,8 @@ Also, your blocks have to return strings.
 
 With those caveats, behold
 
-  class HelloWorld < ShatnerBase
-    get '/' do
-      "hello, ... world."
+    class HelloWorld < ShatnerBase
+      get '/' do
+        "hello, ... world."
+      end
     end
-  end

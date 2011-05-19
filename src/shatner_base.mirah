@@ -95,13 +95,9 @@ class ShatnerBase < HttpServlet
   
   def doGet(request, response)
     route = request.getContextPath
-    puts "GET #{route}" #argh parsers "
-    result =   callback_for_route(route).call
-    puts "result :"
-    puts result
+    result = callback_for_route(route).call
     writer = response.getWriter
     writer.println result
-    writer.close
-    puts "done"
+    writer.close  
   end
 end

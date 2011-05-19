@@ -15,7 +15,7 @@ end
 
 task :compile_test => :compile do #=> :jar do
   puts "Compiling Mirah tests"
-  mirahc 'test_sinatra_clone.mirah',:options => [
+  mirahc 'test_shatner.mirah',:options => [
     '--classpath', Dir['javalib/*.jar'].join(':') + ":build/",'-V']
 end
 

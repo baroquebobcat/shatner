@@ -47,21 +47,29 @@ end
 end
 
 class SinatraCloneTest
-#  macro def test(name, &block)
-#    test_name = "test_" + name.string_value.replaceAll(" ", "_")
-#m = quote { def `"bar"`;puts "aoeu";end}
+/*  macro def test(name, &block)
+    test_name = "test_" + name.string_value.replaceAll(" ", "_")
+m = quote { def `"bar"`;puts "aoeu";end}
 #puts MethodDefinition(m).child_nodes
-#puts m
-#    quote do
-#      import org.junit.Test
-#      $Test
-#      def `test_name`:void
-#        `block.body`
-#      end
-#    end
-#  end
+puts m
+import org.junit.Test
+    node = quote do
+      import org.junit.Test
+      $Test
+      def test_name #`test_name`:void
+       # `block.body`
+"aoeu"
+      end
+    end
+puts node
+puts node.child_nodes
+puts "==============================="
+#quote {nil}
+node
+  end
 #
-#test "doGet prints hello world" do
+  #test "doGet prints hello world" do
+*/
   $Test
   def test_doGet_prints_hello_world : void
     app = SomeApp.new

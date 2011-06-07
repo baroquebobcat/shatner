@@ -170,15 +170,15 @@ class ShatnerBase < HttpServlet
   end
   
   def doGet(request, response)
-    route = request.getContextPath
-    result = callback_for_route('GET', route).call
-    writer = response.getWriter
+    route = request.getPathInfo
+    result = callback_for_route('GET', route ).call
+    writer = response.getWriter    
     writer.println result
     writer.close
   end
   
   def doPost(request, response)
-    route = request.getContextPath
+    route = request.getPathInfo
     result = callback_for_route('POST', route).call
     writer = response.getWriter
     writer.println result

@@ -38,7 +38,7 @@ end
 class FakeServletRequest; implements HttpServletRequest
   def initialize
   end
-  def getContextPath : String
+  def getPathInfo : String
     "/"
   end
 end

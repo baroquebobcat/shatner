@@ -1,0 +1,17 @@
+require 'ant'
+require 'rubygems'
+require 'bundler/setup'
+require 'mirah_task'
+
+desc "compiles it"
+task :compile do
+  puts "Compiling Hello World"
+  mirahc 'hello_world.mirah',:options => [ '-d', '../../build' ,
+    '--classpath', Dir['../../javalib/*.jar'].join(':') + ":#{'../../build'}"]
+
+end
+
+task :java_source do
+  mirahc 'hello_world.mirah',:options => [ '-j' ,
+    '--classpath', Dir['../../javalib/*.jar'].join(':') + ":#{'../../build'}"]
+end

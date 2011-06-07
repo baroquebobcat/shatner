@@ -1,0 +1,9 @@
+---
+  :jruby_min_runtimes: 0
+  :jruby_max_runtimes: 0
+  :classes_dir: ../../build
+  :web_apps:
+    :default:
+      :servlet:
+        :class: org.hello.world.HelloWorld
+        :name: HelloWorld

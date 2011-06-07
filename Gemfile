@@ -1,3 +1,3 @@
-gem 'mirah' , :path => '../mirah'
+gem 'mirah' , :git => 'https://github.com/mirah/mirah.git'#,:path => '../mirah'
 gem 'rake'
-gem 'bitescript', :path => '../bitescript'
+gem "bitescript", :git => 'https://github.com/headius/bitescript.git'#, :path => '../bitescript'

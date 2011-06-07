@@ -27,7 +27,13 @@ class SomeAppWoInitializer < ShatnerBase
   get '/' do
     'bananas'
   end
-end  
+end
+
+class SomeAppWithPost < ShatnerBase
+  post '/' do
+    'bananas'
+  end
+end
   
 class FakeServletRequest; implements HttpServletRequest
   def initialize
@@ -68,15 +74,24 @@ puts "==============================="
 node
   end
 #
-  #test "doGet prints hello world" do
+  test "doGet prints hello world" do
 */
   $Test
   def test_doGet_prints_hello_world : void
     app = SomeApp.new
     req = FakeServletRequest.new
     resp = FakeServletResponse.new
-  puts "app routes:"
-  puts app.routes_to_runnables
     app.doGet(req,resp)
+    #assert resp something
   end
+
+  $Test
+  def test_doPost_prints_hello_world : void
+    app = SomeAppWithPost.new
+    req = FakeServletRequest.new
+    resp = FakeServletResponse.new
+    app.doPost(req,resp)
+    #assert resp something
+  end
+
 end

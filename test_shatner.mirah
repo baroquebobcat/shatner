@@ -3,8 +3,10 @@ package org.shatner
 import org.shatner.ShatnerBase
 import javax.servlet.http.*
 import java.util.HashMap
+
 import java.util.concurrent.Callable
 import java.io.PrintWriter
+import java.io.ByteArrayOutputStream
 
 import org.junit.After
 import org.junit.Before
@@ -46,9 +48,13 @@ end
 
 class FakeServletResponse; implements HttpServletResponse
 def initialize
+  @output_stream = ByteArrayOutputStream.new
 end
 def getWriter
-  PrintWriter.new System.err
+  PrintWriter.new output_stream
+end
+def output_stream
+@output_stream
 end
 end
 
@@ -82,7 +88,8 @@ node
     req = FakeServletRequest.new
     resp = FakeServletResponse.new
     app.doGet(req,resp)
-    #assert resp something
+    
+    Assert.assertEquals "bananas\n", resp.output_stream.toString
   end
 
   $Test
@@ -91,7 +98,8 @@ node
     req = FakeServletRequest.new
     resp = FakeServletResponse.new
     app.doPost(req,resp)
-    #assert resp something
+
+    Assert.assertEquals "bananas\n", resp.output_stream.toString
   end
 
 end

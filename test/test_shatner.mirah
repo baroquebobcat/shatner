@@ -31,6 +31,12 @@ class SomeAppWoInitializer < ShatnerBase
   end
 end
 
+#class SomeAppWithView < ShatnerBase
+#  get '/' do
+#    edb :index
+#  end
+#end
+
 class SomeAppWithPost < ShatnerBase
   post '/' do
     'bananas'
@@ -82,24 +88,57 @@ node
 #
   test "doGet prints hello world" do
 */
+
+  $After
+  def after
+    @app = ShatnerBase(nil)
+    @req = FakeServletRequest.new
+    @resp = FakeServletResponse.new
+  end
+  
   $Test
   def test_doGet_prints_bananas : void
-    app = SomeApp.new
-    req = FakeServletRequest.new
-    resp = FakeServletResponse.new
-    app.doGet(req,resp)
+    set_app SomeApp.new
+
+    get '/'
     
     Assert.assertEquals "bananas\n", resp.output_stream.toString
   end
 
   $Test
   def test_doPost_prints_bananas : void
-    app = SomeAppWithPost.new
-    req = FakeServletRequest.new
-    resp = FakeServletResponse.new
-    app.doPost(req,resp)
-
+    set_app SomeAppWithPost.new
+    
+    post '/'
+  
     Assert.assertEquals "bananas\n", resp.output_stream.toString
   end
 
+#  $Test
+#  def test_some_app_with_view_prints_bananas : void
+#    set_app SomeAppWithView.new
+#  end
+  
+  
+  def get url:String
+    @req = FakeServletRequest.new
+    @resp = FakeServletResponse.new
+
+    @app.doGet(@req, @resp)
+  end
+    
+  def post url:String
+    @req = FakeServletRequest.new
+    @resp = FakeServletResponse.new
+
+    @app.doPost(@req, @resp)
+  end
+    
+  def resp
+    @resp
+  end
+  
+  def set_app app:ShatnerBase
+    @app = app
+  end
 end

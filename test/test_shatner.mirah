@@ -83,7 +83,7 @@ node
   test "doGet prints hello world" do
 */
   $Test
-  def test_doGet_prints_hello_world : void
+  def test_doGet_prints_bananas : void
     app = SomeApp.new
     req = FakeServletRequest.new
     resp = FakeServletResponse.new
@@ -93,7 +93,7 @@ node
   end
 
   $Test
-  def test_doPost_prints_hello_world : void
+  def test_doPost_prints_bananas : void
     app = SomeAppWithPost.new
     req = FakeServletRequest.new
     resp = FakeServletResponse.new

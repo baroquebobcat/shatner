@@ -15,8 +15,8 @@ end
 
 task :compile_test => :compile do #=> :jar do
   puts "Compiling Mirah tests"
-  mirahc 'test_shatner.mirah',:options => [
-    '--classpath', Dir['javalib/*.jar'].join(':') + ":build/"]#,'-V']
+  mirahc *(Dir['test/test_*.mirah'] << {:options => [
+    '--classpath', Dir['javalib/*.jar'].join(':') + ":build/"]})#,'-V']
 end
 
 desc "run tests"
@@ -24,7 +24,7 @@ task :test => :compile_test do
   ant.junit :haltonfailure => 'true', :fork => 'true' do
     classpath :path => Dir['javalib/*.jar'].join(':')+':build/:.'
     batchtest do
-      fileset :dir => "." do
+      fileset :dir => "test/" do
         include :name => '**/*Test.class'
       end
       formatter :type => 'plain', :usefile => 'false'

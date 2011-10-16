@@ -1,3 +1,5 @@
 org/
 .redcar
 Gemfile.lock
+log
+tmp

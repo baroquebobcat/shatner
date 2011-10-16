@@ -1,3 +1,5 @@
-gem 'mirah' , :git => 'https://github.com/mirah/mirah.git'#,:path => '../mirah'
+source :rubygems
+
+gem 'mirah'#, :path => '../mirah'
 gem 'rake'
-gem "bitescript", :git => 'https://github.com/headius/bitescript.git'#, :path => '../bitescript'
+gem "bitescript"#, :path => '../bitescript'
